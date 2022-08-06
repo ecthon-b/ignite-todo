@@ -1,7 +1,10 @@
 import '../src/styles/global.css';
+import { Header } from './components/Header';
 
 export function App() {
   return (
-    <h1>ToDo</h1>
+    <div>
+      <Header />
+    </div>
   )
 }
