@@ -1,6 +1,7 @@
 import styled from './ShowTodos.module.css';
 
 import { PlusCircle } from 'phosphor-react';
+import { NoTasks } from './NoTasks';
 export function ShowTodos() {
     return (
         <main className={styled.container}>
@@ -22,6 +23,11 @@ export function ShowTodos() {
                     <span className={styled.secondSpan}>Concluídas</span>
                     <p className={styled.count}>1</p>
                 </div>
+            </div>
+
+            <div className={styled.showTasks}>
+                <NoTasks />
+
             </div>
 
         </main>
