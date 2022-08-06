@@ -75,10 +75,12 @@ p {
 }
 
 .infoTasks p {
-    padding: 2px 1rem;
+    padding: 2px 8px;
     background: var(--gray-400);
     border-radius: 50px;
     color: var(--gray-200);
+    font-weight: 700;
+    font-size: 0.75rem;
 }
 
 .showTasks {
