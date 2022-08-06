@@ -37,8 +37,44 @@
     gap: 0.5rem;
     cursor: pointer;
     transition: background 0.2s;
+    border: 0;
 }
 
 .newTaskBar .btnAdd:hover {
     background: var(--blue);
+}
+
+/* INFO CONTENT TASK */
+.contentInfoTasks {
+    width: 736px;
+    margin: 4rem auto 1.5rem auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.infoTasks {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.infoTasks span,
+p {
+    font-weight: bold;
+    font-size: 0.875rem;
+}
+
+.infoTasks .firstSpan {
+    color: var(--blue);
+}
+
+.secondSpan {
+    color: var(--purple);
+}
+
+.infoTasks p {
+    padding: 2px 1rem;
+    background: var(--gray-400);
+    border-radius: 50px;
+    color: var(--gray-200);
 }
