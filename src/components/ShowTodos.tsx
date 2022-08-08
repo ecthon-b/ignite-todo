@@ -1,15 +1,44 @@
 import styled from './ShowTodos.module.css';
 
+import { v4 as uuidv4 } from 'uuid';
 import { PlusCircle } from 'phosphor-react';
 import { NoTasks } from './NoTasks';
 import { TaskList } from './TaskList';
+import { FormEvent, useState } from 'react';
+
+interface Task {
+    id: string;
+    title: string;
+    isComplete: boolean;
+}
+
+
 export function ShowTodos() {
+    // const [tasks, setTasks] = useState<Task[]>([]);
+    // const [taskTitle, setTaskTitle] = useState('');
+
+    // function setNewTaskTitle(event: FormEvent) {
+    //     event.preventDefault();
+
+    // }
+
     return (
         <main className={styled.container}>
             <div className={styled.content}>
-                <form className={styled.newTaskBar}>
-                    <input type="text" placeholder="Adicione uma nova tarefa" />
-                    <button className={styled.btnAdd} >Criar <PlusCircle size={16} /></button>
+                <form
+                    // onSubmit={setNewTaskTitle}
+                    className={styled.newTaskBar}
+                >
+                    <input
+                        // type="text"
+                        name='nametask'
+                        placeholder="Adicione uma nova tarefa"
+                    />
+                    <button
+                        type='submit'
+                        className={styled.btnAdd}
+                    > Criar <PlusCircle size={16} />
+                    </button>
                 </form>
 
             </div>

@@ -1,4 +1,5 @@
 import { Circle, Trash } from 'phosphor-react';
+
 import styled from './CardTask.module.css';
 
 export function CardTask() {
