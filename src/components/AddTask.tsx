@@ -1,4 +1,4 @@
-import styled from './ShowTodos.module.css';
+import styled from './AddTask.module.css';
 
 import { v4 as uuidv4 } from 'uuid';
 import { PlusCircle } from 'phosphor-react';
@@ -13,25 +13,25 @@ interface Task {
 }
 
 
-export function ShowTodos() {
-    // const [tasks, setTasks] = useState<Task[]>([]);
-    // const [taskTitle, setTaskTitle] = useState('');
+export function AddTask() {
+    const [tasks, setTasks] = useState<Task[]>([
+        {
+            id: uuidv4(),
+            title: 'Minha task',
+            isComplete: true
+        }
+    ]);
 
-    // function setNewTaskTitle(event: FormEvent) {
-    //     event.preventDefault();
-
-    // }
 
     return (
         <main className={styled.container}>
             <div className={styled.content}>
                 <form
-                    // onSubmit={setNewTaskTitle}
                     className={styled.newTaskBar}
                 >
                     <input
-                        // type="text"
-                        name='nametask'
+                        type="text"
+                        name='titletask'
                         placeholder="Adicione uma nova tarefa"
                     />
                     <button
@@ -43,6 +43,7 @@ export function ShowTodos() {
 
             </div>
 
+            {/* INFORMAÇÕES: Tasks criadas/concluídas */}
             <div className={styled.contentInfoTasks}>
                 <div className={styled.infoTasks}>
                     <span className={styled.firstSpan}>Tarefas criadas</span>
@@ -56,9 +57,7 @@ export function ShowTodos() {
             </div>
 
             <div className={styled.showTasks}>
-                {/* <NoTasks /> */}
-                <TaskList />
-
+                {tasks.length === 0 ? <NoTasks /> : <TaskList />}
             </div>
 
         </main>
