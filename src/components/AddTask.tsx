@@ -3,10 +3,10 @@ import styled from './AddTask.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import { PlusCircle } from 'phosphor-react';
 import { NoTasks } from './NoTasks';
-import { TaskList } from './TaskList';
-import { ButtonHTMLAttributes, ChangeEvent, FormEvent, MouseEvent, useState } from 'react';
+import { ChangeEvent, MouseEvent, useState } from 'react';
+import { CardTask } from './CardTask';
 
-interface Task {
+export interface Task {
     id: string;
     title: string;
     isComplete: boolean;
@@ -69,7 +69,7 @@ export function AddTask() {
             <div className={styled.contentInfoTasks}>
                 <div className={styled.infoTasks}>
                     <span className={styled.firstSpan}>Tarefas criadas</span>
-                    <p className={styled.count}>0</p>
+                    <p className={styled.count}>{tasks.length}</p>
                 </div>
 
                 <div className={styled.infoTasks}>
@@ -79,9 +79,12 @@ export function AddTask() {
             </div>
 
             <div className={styled.showTasks}>
-                {tasks.length === 0 ? <NoTasks /> : <TaskList />}
+                {tasks.length === 0
+                    ? <NoTasks />
+                    : <ul>{tasks.map(task => (
+                        <CardTask key={task.id} id={task.id} title={task.title} isComplet={task.isComplete} />
+                    ))}</ul>}
             </div>
-
         </main>
     )
 }

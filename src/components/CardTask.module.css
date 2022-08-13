@@ -11,13 +11,23 @@
     gap: 12px;
 }
 
-.card p {
+.card .title {
     width: 632px;
     height: 40px;
     text-align: start;
     font-weight: 400;
     font-size: 0.875rem;
     line-height: 140%;
+}
+
+.complete {
+    width: 632px;
+    height: 40px;
+    text-align: start;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 140%;
+    text-decoration: line-through;
 }
 
 .card button {

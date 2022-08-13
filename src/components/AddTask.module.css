@@ -89,3 +89,7 @@ p {
     height: auto;
     /* background: red; */
 }
+
+ul {
+    list-style: none;
+}
