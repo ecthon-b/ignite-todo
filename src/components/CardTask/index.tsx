@@ -25,7 +25,7 @@ export function CardTask({ id, title, isComplet }: CardProps) {
                 <p className={taskComplete === false ? styled.title : styled.complete}>
                     {title}
                 </p>
-                <button><Trash color='#808080' size={18} /></button>
+                <button className={styled.btnDelete}><Trash size={18} /></button>
             </div>
         </li>
     )

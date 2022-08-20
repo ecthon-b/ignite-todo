@@ -38,3 +38,11 @@
     border-radius: 2px;
     background: transparent;
 }
+
+.card .btnDelete {
+    color: #808080;
+}
+
+.card .btnDelete:hover {
+    color: var(--danger);
+}

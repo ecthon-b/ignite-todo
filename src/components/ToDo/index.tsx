@@ -14,6 +14,7 @@ export interface TaskProps {
 
 export function ToDo() {
 
+    const [taskTitle, setTaskTitle] = useState("");
     const [tasks, setTask] = useState<TaskProps[]>([
         {
             id: uuidv4(),
@@ -21,8 +22,6 @@ export function ToDo() {
             isComplete: false
         }
     ])
-
-    const [taskTitle, setTaskTitle] = useState("");
 
     function getTaskTitle(event: ChangeEvent<HTMLInputElement>) {
         setTaskTitle(event.target.value);
@@ -47,6 +46,8 @@ export function ToDo() {
         console.log(tasks)
         setTaskTitle("");
     }
+
+
 
     return (
         <main className={styled.container}>
@@ -76,12 +77,12 @@ export function ToDo() {
             <div className={styled.contentInfoTasks}>
                 <div className={styled.infoTasks}>
                     <span className={styled.firstSpan}>Tarefas criadas</span>
-                    <p className={styled.count}>10</p>
+                    <p className={styled.count}>{tasks.length}</p>
                 </div>
 
                 <div className={styled.infoTasks}>
                     <span className={styled.secondSpan}>Concluídas</span>
-                    <p className={styled.count}>0 de 10</p>
+                    <p className={styled.count}>0 de {tasks.length}</p>
                 </div>
             </div>
 
@@ -89,7 +90,12 @@ export function ToDo() {
                 {tasks.length === 0
                     ? <NoTasks />
                     : <ul>{tasks.map(task => (
-                        <CardTask key={task.id} id={task.id} title={task.title} isComplet={task.isComplete} />
+                        <CardTask
+                            key={task.id}
+                            id={task.id}
+                            title={task.title}
+                            isComplet={task.isComplete}
+                        />
                     ))}</ul>}
             </div>
         </main>
