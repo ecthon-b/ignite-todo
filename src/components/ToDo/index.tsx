@@ -1,55 +1,51 @@
-import styled from './AddTask.module.css';
+import styled from './styles.module.css';
 
 import { v4 as uuidv4 } from 'uuid';
 import { PlusCircle } from 'phosphor-react';
-import { NoTasks } from './NoTasks';
+import { NoTasks } from '../NoTasks';
 import { ChangeEvent, MouseEvent, useState } from 'react';
-import { CardTask } from './CardTask';
+import { CardTask } from '../CardTask';
 
-export interface Task {
+export interface TaskProps {
     id: string;
     title: string;
     isComplete: boolean;
 }
 
+export function ToDo() {
 
-export function AddTask() {
-    const [titleTask, setTitleTask] = useState('');
-    const [countTaskComplete, setCountTaskComplete] = useState([]);
-    const [tasks, setTasks] = useState<Task[]>([
-        // {
-        //     id: uuidv4(),
-        //     title: 'Minha task',
-        //     isComplete: true
-        // }
-    ]);
+    const [tasks, setTask] = useState<TaskProps[]>([
+        {
+            id: uuidv4(),
+            title: 'Refatorando ToDo',
+            isComplete: false
+        }
+    ])
 
-    function getTitleNewTask(event: ChangeEvent<HTMLInputElement>) {
-        setTitleTask(event.target.value);
+    const [taskTitle, setTaskTitle] = useState("");
+
+    function getTaskTitle(event: ChangeEvent<HTMLInputElement>) {
+        setTaskTitle(event.target.value);
     }
 
-    function handleCreateNewTask(event: MouseEvent<HTMLButtonElement>) {
+    function hendleAddNewTask(event: MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
+
         const task = {
             id: uuidv4(),
-            title: titleTask,
+            title: taskTitle,
             isComplete: false
         }
 
         if (task.title !== "") {
-            setTasks([...tasks, task]);
+            setTask([...tasks, task]);
         } else {
-            return alert("Esse campo não pode estar vazio.")
+            alert("O campo não pode estar vazio.")
         }
 
-        CountTasksCompleted()
-        setTitleTask("");
-        // tasks.push(task);
-        // console.log(tasks);
-    }
-
-    function CountTasksCompleted() {
-
+        tasks.push(task);
+        console.log(tasks)
+        setTaskTitle("");
     }
 
     return (
@@ -59,16 +55,16 @@ export function AddTask() {
                     className={styled.newTaskBar}
                 >
                     <input
-                        onSubmit={getTitleNewTask}
+                        onSubmit={getTaskTitle}
                         name='titletask'
                         type="text"
                         placeholder="Adicione uma nova tarefa"
-                        value={titleTask}
-                        onChange={getTitleNewTask}
+                        value={taskTitle}
+                        onChange={getTaskTitle}
                     />
                     <button
                         type='submit'
-                        onClick={handleCreateNewTask}
+                        onClick={hendleAddNewTask}
                         className={styled.btnAdd}
                     > Criar <PlusCircle size={16} />
                     </button>
@@ -80,12 +76,12 @@ export function AddTask() {
             <div className={styled.contentInfoTasks}>
                 <div className={styled.infoTasks}>
                     <span className={styled.firstSpan}>Tarefas criadas</span>
-                    <p className={styled.count}>{tasks.length}</p>
+                    <p className={styled.count}>10</p>
                 </div>
 
                 <div className={styled.infoTasks}>
                     <span className={styled.secondSpan}>Concluídas</span>
-                    <p className={styled.count}>0 de {tasks.length}</p>
+                    <p className={styled.count}>0 de 10</p>
                 </div>
             </div>
 

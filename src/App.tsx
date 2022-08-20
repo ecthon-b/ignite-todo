@@ -1,12 +1,12 @@
 import '../src/styles/global.css';
 import { Header } from './components/Header';
-import { AddTask } from './components/AddTask';
+import { ToDo } from './components/ToDo';
 
 export function App() {
   return (
     <div>
       <Header />
-      <AddTask />
+      <ToDo />
     </div>
   )
 }

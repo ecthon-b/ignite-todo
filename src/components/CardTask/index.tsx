@@ -1,7 +1,7 @@
 import { CheckCircle, Circle, Trash } from 'phosphor-react';
 import { useState } from 'react';
 
-import styled from './CardTask.module.css';
+import styled from './styles.module.css';
 
 interface CardProps {
     id: string;

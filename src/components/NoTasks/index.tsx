@@ -1,4 +1,4 @@
-import styled from './NoTasks.module.css';
+import styled from './styles.module.css';
 
 export function NoTasks() {
     return (
