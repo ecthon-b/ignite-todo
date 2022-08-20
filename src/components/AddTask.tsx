@@ -15,6 +15,7 @@ export interface Task {
 
 export function AddTask() {
     const [titleTask, setTitleTask] = useState('');
+    const [countTaskComplete, setCountTaskComplete] = useState([]);
     const [tasks, setTasks] = useState<Task[]>([
         // {
         //     id: uuidv4(),
@@ -35,10 +36,20 @@ export function AddTask() {
             isComplete: false
         }
 
-        setTasks([...tasks, task]);
+        if (task.title !== "") {
+            setTasks([...tasks, task]);
+        } else {
+            return alert("Esse campo não pode estar vazio.")
+        }
+
+        CountTasksCompleted()
         setTitleTask("");
         // tasks.push(task);
         // console.log(tasks);
+    }
+
+    function CountTasksCompleted() {
+
     }
 
     return (
@@ -74,7 +85,7 @@ export function AddTask() {
 
                 <div className={styled.infoTasks}>
                     <span className={styled.secondSpan}>Concluídas</span>
-                    <p className={styled.count}>0</p>
+                    <p className={styled.count}>0 de {tasks.length}</p>
                 </div>
             </div>
 
