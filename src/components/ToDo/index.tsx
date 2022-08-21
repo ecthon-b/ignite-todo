@@ -1,10 +1,9 @@
 import styled from './styles.module.css';
 
 import { v4 as uuidv4 } from 'uuid';
-import { PlusCircle } from 'phosphor-react';
+import { CheckCircle, Circle, PlusCircle, Trash } from 'phosphor-react';
 import { NoTasks } from '../NoTasks';
 import { ChangeEvent, MouseEvent, useState } from 'react';
-import { CardTask } from '../CardTask';
 
 export interface TaskProps {
     id: string;
@@ -13,41 +12,13 @@ export interface TaskProps {
 }
 
 export function ToDo() {
-
-    const [taskTitle, setTaskTitle] = useState("");
-    const [tasks, setTask] = useState<TaskProps[]>([
+    const [tasks, setTasks] = useState<TaskProps[]>([
         {
             id: uuidv4(),
-            title: 'Refatorando ToDo',
+            title: 'Refactor',
             isComplete: false
         }
     ])
-
-    function getTaskTitle(event: ChangeEvent<HTMLInputElement>) {
-        setTaskTitle(event.target.value);
-    }
-
-    function hendleAddNewTask(event: MouseEvent<HTMLButtonElement>) {
-        event.preventDefault();
-
-        const task = {
-            id: uuidv4(),
-            title: taskTitle,
-            isComplete: false
-        }
-
-        if (task.title !== "") {
-            setTask([...tasks, task]);
-        } else {
-            alert("O campo não pode estar vazio.")
-        }
-
-        tasks.push(task);
-        console.log(tasks)
-        setTaskTitle("");
-    }
-
-
 
     return (
         <main className={styled.container}>
@@ -56,16 +27,11 @@ export function ToDo() {
                     className={styled.newTaskBar}
                 >
                     <input
-                        onSubmit={getTaskTitle}
-                        name='titletask'
                         type="text"
                         placeholder="Adicione uma nova tarefa"
-                        value={taskTitle}
-                        onChange={getTaskTitle}
                     />
                     <button
                         type='submit'
-                        onClick={hendleAddNewTask}
                         className={styled.btnAdd}
                     > Criar <PlusCircle size={16} />
                     </button>
@@ -89,14 +55,19 @@ export function ToDo() {
             <div className={styled.showTasks}>
                 {tasks.length === 0
                     ? <NoTasks />
-                    : <ul>{tasks.map(task => (
-                        <CardTask
-                            key={task.id}
-                            id={task.id}
-                            title={task.title}
-                            isComplet={task.isComplete}
-                        />
-                    ))}</ul>}
+                    : <ul>
+
+                        <li>
+                            <div className={styled.card}>
+                                <button><Circle color='#4EA8DE' size={18} /></button>
+                                <p className={styled.title}>
+                                    Lorem Ipsum Dolor
+                                </p>
+                                <button className={styled.btnDelete}><Trash size={18} /></button>
+                            </div>
+                        </li>
+
+                    </ul>}
             </div>
         </main>
     )
