@@ -36,6 +36,15 @@ export function ToDo() {
         setNewTaskTitle("");
     }
 
+    function hendleToggleTaskComplete(id: string) {
+        const toggleTaskComplete = tasks.map(task => task.id === id ? {
+            ...task,
+            isComplete: !task.isComplete
+        } : task)
+
+        setTasks(toggleTaskComplete);
+    }
+
     return (
         <main className={styled.container}>
             <div className={styled.content}>
@@ -76,15 +85,23 @@ export function ToDo() {
                     ? <NoTasks />
                     : <ul>
 
-                        <li>
-                            <div className={styled.card}>
-                                <button><Circle color='#4EA8DE' size={18} /></button>
-                                <p className={styled.title}>
-                                    Lorem Ipsum Dolor
-                                </p>
-                                <button className={styled.btnDelete}><Trash size={18} /></button>
-                            </div>
-                        </li>
+                        {tasks.map(task => (
+                            <li key={task.id}>
+                                <div className={styled.card}>
+                                    <button onClick={() => hendleToggleTaskComplete(task.id)} >
+                                        {task.isComplete === false ? <Circle color='#4EA8DE' size={24} /> : <CheckCircle color='#9747FF' size={24} weight="fill" />}
+                                    </button>
+
+                                    <p className={task.isComplete === false ? styled.title : styled.complete}>
+                                        {task.title}
+                                    </p>
+
+                                    <button className={styled.btnDelete}>
+                                        <Trash size={18} />
+                                    </button>
+                                </div>
+                            </li>
+                        ))}
 
                     </ul>}
             </div>
