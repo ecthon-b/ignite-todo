@@ -4,7 +4,7 @@
 
 - [x] Adicionar uma nova tarefa
 - [x] Marcar e desmarcar uma tarefa como concluída
-- [] Remover uma tarefa da listagem
+- [x] Remover uma tarefa da listagem
 - [] Mostrar o progresso de conclusão das tarefas
 
 

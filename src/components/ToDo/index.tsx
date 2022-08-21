@@ -45,6 +45,11 @@ export function ToDo() {
         setTasks(toggleTaskComplete);
     }
 
+    function hendleDeleteTask(id: string) {
+        const deleteTask = tasks.filter(task => task.id !== id);
+        setTasks(deleteTask);
+    }
+
     return (
         <main className={styled.container}>
             <div className={styled.content}>
@@ -96,8 +101,11 @@ export function ToDo() {
                                         {task.title}
                                     </p>
 
-                                    <button className={styled.btnDelete}>
-                                        <Trash size={18} />
+                                    <button
+                                        className={styled.btnDelete}
+                                        onClick={() => hendleDeleteTask(task.id)}
+                                    >
+                                        <Trash size={24} />
                                     </button>
                                 </div>
                             </li>
