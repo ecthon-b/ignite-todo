@@ -19,6 +19,22 @@ export function ToDo() {
             isComplete: false
         }
     ])
+    const [newTaskTitle, setNewTaskTitle] = useState('');
+
+    function hendleCreateNewTask() {
+        if (!newTaskTitle) {
+            return alert("O campo não pode estar vazio.")
+        }
+
+        const task = {
+            id: uuidv4(),
+            title: newTaskTitle,
+            isComplete: false
+        }
+
+        setTasks([...tasks, task]);
+        setNewTaskTitle("");
+    }
 
     return (
         <main className={styled.container}>
@@ -29,10 +45,13 @@ export function ToDo() {
                     <input
                         type="text"
                         placeholder="Adicione uma nova tarefa"
+                        value={newTaskTitle}
+                        onChange={(e) => setNewTaskTitle(e.target.value)}
                     />
                     <button
                         type='submit'
                         className={styled.btnAdd}
+                        onClick={hendleCreateNewTask}
                     > Criar <PlusCircle size={16} />
                     </button>
                 </div>
